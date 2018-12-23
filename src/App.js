@@ -1,28 +1,50 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+import { loadItems, clearItems } from "./actions";
 
 class App extends Component {
+  state = {
+    clickCount: 0
+  };
   render() {
+    const { loadItems, clearItems, items = [] } = this.props;
+    const wrapperMethod = () => {
+      this.setState(
+        {
+          clickCount: this.state.clickCount + 1
+        },
+        () => {
+          loadItems();
+        }
+      );
+    };
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <p>Hello App {this.state.clickCount}</p>
+        <ul>
+          {items.map(item => (
+            <li key={item}>{item}</li>
+          ))}
+        </ul>
+        <div>
+          <button onClick={wrapperMethod}>Load items</button>
+          <button onClick={clearItems}>Clear</button>
+        </div>
       </div>
     );
   }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return { items: state.items };
+};
+
+const mapDispatch = dispatch => {
+  return bindActionCreators({ loadItems, clearItems }, dispatch);
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatch
+)(App);
