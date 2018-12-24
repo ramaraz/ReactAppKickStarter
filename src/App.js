@@ -8,20 +8,20 @@ class App extends Component {
     clickCount: 0
   };
   render() {
-    const { loadItems, clearItems, items = [] } = this.props;
+    const { loadItems, clearItems, items = [], title } = this.props;
     const wrapperMethod = () => {
       this.setState(
         {
           clickCount: this.state.clickCount + 1
         },
         () => {
-          loadItems();
+          loadItems(this.state.clickCount);
         }
       );
     };
     return (
       <div className="App">
-        <p>Hello App {this.state.clickCount}</p>
+        <p>Hello {title}</p>
         <ul>
           {items.map(item => (
             <li key={item}>{item}</li>
@@ -37,7 +37,7 @@ class App extends Component {
 }
 
 const mapStateToProps = state => {
-  return { items: state.items };
+  return { items: state.items, title: state.title };
 };
 
 const mapDispatch = dispatch => {
