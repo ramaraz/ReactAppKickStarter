@@ -1,7 +1,7 @@
 import { LOAD_ITEMS, CLEAR_ITEMS, LOAD_ITEMS_DONE } from "../actions";
 
 const initialState = {
-  items: [1, 2, 3]
+  items:[]
 };
 
 export default function practiceStore(state = initialState, actions) {
@@ -9,9 +9,11 @@ export default function practiceStore(state = initialState, actions) {
     case LOAD_ITEMS:
       return initialState;
     case LOAD_ITEMS_DONE:
+    state.items.push(actions.payload)
       return {
         ...state,
-        title: actions.payload
+        title: actions.payload,
+        items: state.items
       };
     case CLEAR_ITEMS:
       return [];
