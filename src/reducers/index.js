@@ -9,7 +9,7 @@ export default function practiceStore(state = initialState, actions) {
     case LOAD_ITEMS:
       return initialState;
     case LOAD_ITEMS_DONE:
-    state.items.push(actions.payload)
+      state.items.push(actions.payload)
       return {
         ...state,
         title: actions.payload,

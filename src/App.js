@@ -14,14 +14,13 @@ class App extends Component {
         clickCount: this.state.clickCount + 1
       },
       () => {
-        console.log('loadItems');
         this.props.loadItems(this.state.clickCount);
       }
     );
   };
 
   componentDidMount(){
-   const randomNumber =  Math.ceil(Math.random()*10)
+   const randomNumber =  Math.ceil(Math.random()*10);
     this.props.loadItems(randomNumber);
   }
 
