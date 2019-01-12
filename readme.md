@@ -10,10 +10,4 @@
 - rxjs
 - rxjs-compat
 
-## To get started
-
-- Clone the project
-- cd into the folder & `yarn`
-- run `yarn start`
-
 > Unit tests are pending
