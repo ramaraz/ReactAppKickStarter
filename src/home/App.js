@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { loadItems, clearItems } from "./actions";
-import { mapTo } from "rxjs-compat/operator/mapTo";
+import { loadItems, clearItems } from "../actions";
+import Counter from "./Counter";
+import Items from "./Items";
 
 class App extends Component {
   state = {
@@ -26,22 +27,18 @@ class App extends Component {
 
 updateCounterAndReloadBound = this.updateCounterAndReload.bind(this)
   render() {
-    const { loadItems, clearItems, items = [], title } = this.props;
+    const {clearItems, items = [], title } = this.props;
     const {clickCount} = this.state;
     
     return (
       <div className="App">
         <p>Welcome To React {title}</p>
-        <ul>
-          {items.map((item,index) => (
-            <li key={Date.now() + 'r' + index}>{item}</li>
-          ))}
-        </ul>
+        <Items items={items}  />
         <div>
           <button onClick={this.updateCounterAndReloadBound}>Load items</button>
           <button onClick={clearItems}>Clear</button>
         </div><br/>
-        <div>Count:{clickCount}</div>
+        <Counter  clickCount={clickCount}/>
       </div>
     );
   }

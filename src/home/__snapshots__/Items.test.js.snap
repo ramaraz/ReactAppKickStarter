@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Items /> renders items present in th props 1`] = `
+<ul>
+  <li>
+    item1
+  </li>
+  <li>
+    item2
+  </li>
+  <li>
+    item3
+  </li>
+  <li>
+    item4
+  </li>
+</ul>
+`;
